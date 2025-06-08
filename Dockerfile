@@ -74,3 +74,16 @@ FROM ndk AS with_ndk
 ARG BUILD_TOOLS_VERSION
 ARG API_LEVEL
 RUN sdkmanager "build-tools;${BUILD_TOOLS_VERSION}" "platforms;android-${API_LEVEL}"
+
+
+# Set working directory
+WORKDIR /workspace
+
+# Copy project files
+COPY . /workspace
+
+# Create directory for optional libraries
+RUN mkdir -p /usr/lib/android-sdk/platforms/android-28/optional/
+
+# Copy EMDK .jar file into the optional directory
+COPY libs/com.symbol.emdk.jar /usr/lib/android-sdk/platforms/android-28/optional/
