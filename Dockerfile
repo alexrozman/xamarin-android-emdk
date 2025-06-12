@@ -1,4 +1,4 @@
-FROM debian:stable AS platform
+FROM debian:bullseye-slim AS platform
 ARG MAINTAINER
 ARG TZ
 ARG SDK_CMD_TOOLS
