@@ -82,7 +82,7 @@ WORKDIR /workspace
 # Copy project files
 COPY . /workspace
 
-# Install Symbol.XamarinEMDK package and extract JAR
-RUN dotnet nuget install Symbol.XamarinEMDK -OutputDirectory /tmp/emdk \
+# Install Symbol.XamarinEMDK package with nuget and extract JAR
+RUN nuget install Symbol.XamarinEMDK -OutputDirectory /tmp/emdk \
     && mkdir -p /usr/lib/android-sdk/platforms/android-28/optional/ \
     && find /tmp/emdk -name com.symbol.emdk.jar -exec cp {} /usr/lib/android-sdk/platforms/android-28/optional/ \;
