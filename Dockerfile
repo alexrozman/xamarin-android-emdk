@@ -82,8 +82,7 @@ WORKDIR /workspace
 # Copy project files
 COPY . /workspace
 
-# Create directory for optional libraries
-RUN mkdir -p /usr/lib/android-sdk/platforms/android-28/optional/
-
-# Copy EMDK .jar file into the optional directory
-COPY libs/com.symbol.emdk.jar /usr/lib/android-sdk/platforms/android-28/optional/
+# Install Symbol.XamarinEMDK package with nuget and extract JAR
+RUN nuget install Symbol.XamarinEMDK -OutputDirectory /tmp/emdk \
+    && mkdir -p /usr/lib/android-sdk/platforms/android-28/optional/ \
+    && find /tmp/emdk -name com.symbol.emdk.jar -exec cp {} /usr/lib/android-sdk/platforms/android-28/optional/ \;
